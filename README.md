@@ -1,16 +1,16 @@
 # my_cs_flutter_app
 
-A new Flutter project.
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This project is a Flutter application that uses a **Feature First** architecture. Each feature of the app is modular, containing its own screens, widgets, and state management logic. This approach ensures scalability and maintainability by keeping all related components of a feature in one place.
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Home Screen**: A main screen with buttons that navigate to different component implementations.
+- **Button Feature**: A screen with a custom button implementation.
+- **Radio Button Feature**: A screen with a custom radio button implementation.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Architecture: Feature First
+
+The project is structured using a **Feature First** architecture. This means that the code is organized by feature, where each feature contains its own logic, UI, and state management components. This pattern promotes modularity and makes it easier to scale and maintain the app.
