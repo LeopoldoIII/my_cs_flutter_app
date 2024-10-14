@@ -13,8 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'My App',
       theme: AppTheme.lightTheme,
       themeMode: ThemeMode.light,
-      home:
-          MainScreen(), // La pantalla principal ahora está en la carpeta correcta
+      home: MainScreen(),
     );
   }
 }

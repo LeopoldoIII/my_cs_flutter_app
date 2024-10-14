@@ -1,6 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:my_cs_flutter_app/shared/widgets/custom_app_bar.dart';
 
 class SwitchScreen extends StatefulWidget {
   @override
@@ -8,14 +7,14 @@ class SwitchScreen extends StatefulWidget {
 }
 
 class _SwitchScreenState extends State<SwitchScreen> {
-  // Boolean variable to keep track of the switch state
+// Boolean variable to keep track of the switch state
   bool _isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Switch Screen'),
+      appBar: CustomAppBar(
+        title: 'Switch Screen',
         actions: [
           Icon(
             _isSwitched ? Icons.lightbulb : Icons.lightbulb_outline,
@@ -46,11 +45,11 @@ class _SwitchScreenState extends State<SwitchScreen> {
               inactiveThumbColor: Colors.red,
             ),
             AnimatedSwitcher(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               child: Text(
                 'Animated Text ${_isSwitched ? "ON" : "OFF"}',
                 key: ValueKey(_isSwitched),
-                style: TextStyle(fontSize: 24.0),
+                style: const TextStyle(fontSize: 24.0),
               ),
             )
           ],

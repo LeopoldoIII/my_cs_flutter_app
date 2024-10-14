@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_cs_flutter_app/shared/widgets/custom_app_bar.dart';
 
 class RadioButtonScreen extends StatefulWidget {
   @override
@@ -15,9 +16,7 @@ class _RadioButtonScreenState extends State<RadioButtonScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Radio Button Screen'),
-      ),
+      appBar: const CustomAppBar(title: 'Radio Button Screen'),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: _options.map((option) {

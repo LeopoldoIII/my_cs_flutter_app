@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:my_cs_flutter_app/features/button_feature/screens/button_screen.dart'; // Importa la pantalla del botón
 import 'package:my_cs_flutter_app/features/radio_button_feature/screens/radio_button_screeen.dart'; // Importa la pantalla del botón
 import 'package:my_cs_flutter_app/features/swithc_features/screens/switch_screen.dart';
+import 'package:my_cs_flutter_app/shared/widgets/custom_app_bar.dart';
 import 'package:my_cs_flutter_app/shared/widgets/custom_card_widget.dart'; // Importa el widget genérico
 
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
+      appBar: const CustomAppBar(title: 'Home'),
       body: ListView(
         padding: const EdgeInsets.all(8.0),
         children: [
@@ -22,7 +21,7 @@ class MainScreen extends StatelessWidget {
           CustomCardWidget(
             title: 'Radio Button',
             leading: Icons.radio_button_checked,
-            destination: RadioButtonScreen(), 
+            destination: RadioButtonScreen(),
           ),
           CustomCardWidget(
               title: 'Switch',
