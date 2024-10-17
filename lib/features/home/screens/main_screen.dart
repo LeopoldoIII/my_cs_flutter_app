@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_cs_flutter_app/features/button_feature/screens/button_screen.dart'; // Importa la pantalla del botón
+import 'package:my_cs_flutter_app/features/progress_indicator_feature/screens/progress_screen.dart';
 import 'package:my_cs_flutter_app/features/radio_button_feature/screens/radio_button_screeen.dart'; // Importa la pantalla del botón
 import 'package:my_cs_flutter_app/features/switch_features/screens/switch_screen.dart';
-import 'package:my_cs_flutter_app/features/slider_screen/screens/slider_screen.dart';
-
+import 'package:my_cs_flutter_app/features/slider_feature/screens/slider_screen.dart';
 import 'package:my_cs_flutter_app/shared/widgets/custom_app_bar.dart';
 import 'package:my_cs_flutter_app/shared/widgets/custom_card_widget.dart'; // Importa el widget genérico
 
@@ -34,6 +34,11 @@ class MainScreen extends StatelessWidget {
             title: 'Slider',
             leading: Icons.tune,
             destination: SliderScreen(),
+          ),
+          CustomCardWidget(
+            title: 'Progress Indicator',
+            leading: Icons.tune,
+            destination: ProgressScreen(),
           )
         ],
       ),
