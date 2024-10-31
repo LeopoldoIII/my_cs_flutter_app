@@ -5,11 +5,11 @@ class ButtonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Botón'),
+      appBar: const CustomAppBar(title: 'Button'),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Center(child: Text('Esta es la pantalla del botón')),
+          const Center(child: Text('Screen Button')),
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
