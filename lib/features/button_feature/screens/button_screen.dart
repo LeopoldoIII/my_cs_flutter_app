@@ -15,7 +15,7 @@ class ButtonScreen extends StatelessWidget {
             onPressed: () {
               // Aquí puedes implementar cualquier acción que desees para el botón en esta pantalla.
             },
-            child: const Text('Otro botón en esta pantalla'),
+            child: const Text('Other button'),
           ),
         ],
       ),

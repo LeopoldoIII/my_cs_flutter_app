@@ -43,12 +43,12 @@ class _DatePickerScreenState extends State<DatePickerScreen> {
               _selectedDate == null
                   ? 'No date selected'
                   : 'Selected Date: ${_dateFormat.format(_selectedDate!)}',
-              style: TextStyle(fontSize: 24.0),
+              style: const TextStyle(fontSize: 24.0),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => _pickDate(context),
-              child: Text('Pick a Date'),
+              child: const Text('Pick a Date'),
             ),
           ],
         ),
