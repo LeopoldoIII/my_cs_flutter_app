@@ -15,14 +15,14 @@ class CustomCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.pink[50],
+      color: Colors.white70,
       elevation: 8,
-      shadowColor: Colors.pink.withOpacity(0.5), // Color de la sombra
+      shadowColor: Colors.grey.withOpacity(0.5), // Color de la sombra
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: ListTile(
-        leading: Icon(leading, color: Colors.pink),
+        leading: Icon(leading, color: Colors.blue),
         title: Text(
           title,
           style: const TextStyle(

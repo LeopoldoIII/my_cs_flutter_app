@@ -5,7 +5,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions; // Optional actions for the AppBar
 
   // Constructor with a required title and optional actions
-    const CustomAppBar({
+  const CustomAppBar({
     Key? key,
     required this.title,
     this.actions,
@@ -20,11 +20,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
       ),
       centerTitle: true, // Center the title
-      actions: actions, // Optional actions like icons or buttons
+      actions: [
+        // Logo as an action item
+        Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: Image.asset(
+            'assets/images/GlobalLogoBlacksmall.png',
+            height: 30,
+            width: 60,
+            fit: BoxFit.contain,
+          ),
+        )
+      ], // Optional actions like icons or buttons
       flexibleSpace: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.pink, Colors.purple],
+            colors: [Colors.blueAccent, Colors.blueGrey],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

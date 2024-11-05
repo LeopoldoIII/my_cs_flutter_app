@@ -8,7 +8,7 @@ class AppTheme {
     brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.pink,
+      backgroundColor: Colors.lightBlue,
       elevation: 4.0,
       centerTitle: true,
       titleTextStyle: TextStyle(
