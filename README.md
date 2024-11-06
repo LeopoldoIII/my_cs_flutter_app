@@ -20,6 +20,10 @@ The project is structured using a **Feature First** architecture. This means tha
 
 
 ![image](https://github.com/user-attachments/assets/6204ccd7-7eea-4d6a-9207-576f802b8754)
+![image](https://github.com/user-attachments/assets/664f249a-8de3-442d-881d-4feaf2e8540b)
+
+
+
 
 
 ## Application Automation
