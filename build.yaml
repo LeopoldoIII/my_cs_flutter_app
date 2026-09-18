@@ -1,0 +1,13 @@
+targets:
+  $default:
+    sources:
+      - integration_test/**
+      - test/**
+      - lib/**
+    builders:
+      bdd_widget_test|bdd_builder:
+        options:
+          testMethodName: testWidgets
+        generate_for:
+          - integration_test/**/*.feature
+          - test/**/*.feature

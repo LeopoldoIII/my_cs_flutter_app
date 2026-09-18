@@ -24,7 +24,9 @@ The project is structured using a **Feature First** architecture. This means tha
 
 ## Application Automation
 
-To enable automated testing for this application, it’s essential to add unique identifiers (`ValueKey`) to the widgets we want to interact with during tests. This allows `flutter_driver` to reliably locate specific UI elements.
+To enable automated testing for this application, we use **Widget Tests (Level 2)** for fast, isolated component testing and **Integration Tests (Level 3)** using **BDD (Behavior-Driven Development)** for complete End-to-End flows.
+
+It’s essential to add unique identifiers (`ValueKey`) to the widgets we want to interact with during tests. This allows our test suites to reliably locate specific UI elements.
 
 #### Example: Adding `ValueKey` to Widgets
 
@@ -41,46 +43,36 @@ AppBar(
 );
 ```
 
-In this example:
-
-key: const ValueKey('navBarText'): This identifier allows flutter_driver to locate the AppBar title in our automated tests.
-
-Using ValueKey in Tests
-To interact with this widget in a test, use the following code:
-
-    await driver?.tap(find.byValueKey('navBarText'));
-    String? navBarText = await driver?.getText(find.byValueKey('navBarText'));
-    print('NavBar Text: $navBarText');
-
-This practice of adding ValueKey to widgets makes automation easier and more reliable, as each widget can be located and interacted with consistently.
+Using ValueKey in Tests (Widget Tests / Integration Tests):
+```dart
+await tester.tap(find.byKey(const ValueKey('navBarText')));
+expect(find.byKey(const ValueKey('navBarText')), findsOneWidget);
+```
 
 ## Running Tests from the Terminal
 
-To run automated tests using `flutter_driver`, follow these steps:
+We have migrated from the legacy `flutter_driver` to the modern `integration_test` and `bdd_widget_test` architecture.
 
-1. **Start the application in test mode**: Open a terminal in the root directory of the project and run the following command to start the app in test mode. Ensure that the `test_driver/app.dart` file is configured as the entry point for the tests.
-
-```bash
-   flutter run --target=test_driver/app.dart
-```
-
-This command launches the application in test mode, allowing flutter_driver to connect to it.
-
-2. **Execute the test script**: Open a second terminal in the root directory and run the test script by specifying both the app entry file and the test file (e.g., button_test.dart).
+### 1. Generating BDD Code
+If you modify or create new `.feature` files in the `integration_test/features` directory, you must generate the underlying Dart code before running the tests:
 
 ```bash
-   flutter drive --target=test_driver/app.dart --driver=test_driver/button_test.dart
+flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
-Replace `button_test.dart` with the name of your test file if different. This command connects the test file to the app running in test mode, executing the specified test cases.
-
-3. **Adjusting Timeout**: If the tests take longer to complete, you can add a timeout to avoid premature termination:
+### 2. Executing Level 2 Tests (Widget Tests)
+These tests run instantly in memory without needing an emulator:
 
 ```bash
-   flutter drive --target=test_driver/app.dart --driver=test_driver/button_test.dart --timeout=600
+flutter test test/features/button_feature/button_widget_test.dart
 ```
 
-This allows more time for tests to connect and execute fully.
+### 3. Executing Level 3 Tests (Integration Tests)
+Ensure you have an iOS Simulator or Android Emulator running, then execute:
+
+```bash
+flutter test integration_test/features/home_navigation_test.dart
+```
 
 
 #TODO 
