@@ -331,3 +331,58 @@ fvm flutter emulators
 ```sh
 fvm flutter emulator --launch Medium_Phone_API_35
 ```
+
+---
+
+## CI/CD Strategies (GitHub Actions)
+
+When moving these End-to-End tests to the cloud using GitHub Actions, you have three primary architectural options, each with different cost and platform trade-offs:
+
+### 1. Ubuntu Runner + Android Emulator (Cost-Effective)
+Uses a standard Linux runner (`ubuntu-latest`) to spin up a headless Android emulator with hardware acceleration.
+- **How it works:** Uses `reactivecircus/android-emulator-runner` to boot the emulator and `subosito/flutter-action` to run the tests.
+- **Pros:** Fast and extremely cheap (consumes very few GitHub Actions minutes).
+- **Cons:** Only tests Android; cannot run iOS simulators on Linux.
+
+### 2. macOS Runner (Full Coverage)
+Uses an Apple runner (`macos-latest`) provided by GitHub, which comes with Xcode and iOS Simulators pre-installed.
+- **How it works:** Boots the iOS Simulator directly in the runner to execute the tests. You can also run Android tests here.
+- **Pros:** Full coverage for Apple devices.
+- **Cons:** macOS runners consume **10x more action minutes** than Linux runners. They are significantly more expensive and slower to boot.
+
+### 3. Firebase Test Lab (Enterprise Standard)
+This is the **official recommendation by Google** for large-scale production apps.
+- **How it works:** The GitHub Action only compiles the app into an `.apk` or `.zip`. It then uses the `gcloud` CLI to upload these binaries to Firebase Test Lab. Firebase runs the tests in parallel on **real physical devices** (or virtual ones) in Google's data centers.
+- **Pros:** Highly stable, runs on actual hardware, and doesn't block your GitHub runner for 30 minutes waiting for tests to finish.
+- **Cons:** Requires setting up a Google Cloud / Firebase project and managing billing (though there is a generous free tier).
+
+---
+
+## Visual Reporting (Allure)
+
+We use **Allure** to generate beautiful, interactive HTML reports from our End-to-End test executions.
+
+### 1. Prerequisites (macOS)
+You need to install the Allure command-line tool and the Dart `junitreport` converter. Open your terminal and run:
+
+```bash
+# Install Allure CLI via Homebrew
+brew install allure
+
+# Install Dart's JUnit converter globally
+fvm dart pub global activate junitreport
+```
+
+### 2. Generating the Report
+We have provided a unified script `generate_report.sh` that automatically runs the tests, converts the output, and opens the visual dashboard.
+
+Run the script from the root of the project (you can optionally pass your running emulator ID):
+
+```bash
+# Example without specific device
+./generate_report.sh
+
+# Example running on a specific Android emulator
+./generate_report.sh emulator-5554
+```
+This will automatically compile the test, convert the results to XML, and open a new tab in your default web browser with the Allure dashboard.
