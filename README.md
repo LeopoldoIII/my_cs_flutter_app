@@ -113,7 +113,7 @@ This project is a Flutter test application designed for automating and interacti
    ```
 6. Run Flutter Doctor to confirm everything is green:
    ```sh
-   flutter doctor
+   fvm flutter doctor
    ```
 
 ---
@@ -246,21 +246,41 @@ We have migrated from the legacy `flutter_driver` to the modern `integration_tes
 If you modify or create new `.feature` files in the `integration_test/features` directory, you must generate the underlying Dart code before running the tests:
 
 ```bash
-flutter pub run build_runner build --delete-conflicting-outputs
+fvm flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
 ### 2. Executing Level 2 Tests (Widget Tests)
 These tests run instantly in memory without needing an emulator:
 
 ```bash
-flutter test test/features/button_feature/button_widget_test.dart
+fvm flutter test test/features/button_feature/button_widget_test.dart
 ```
 
 ### 3. Executing Level 3 Tests (Integration Tests)
-Ensure you have an iOS Simulator or Android Emulator running, then execute:
+To run End-to-End tests, you need a running iOS Simulator or Android Emulator. Follow these steps to launch a device and run the test:
 
+**Step 1: List installed emulators/simulators**
 ```bash
-flutter test integration_test/features/home_navigation_test.dart
+fvm flutter emulators
+```
+*Note the ID of the emulator you want to use (e.g., `Pixel_7`).*
+
+**Step 2: Launch the emulator**
+```bash
+fvm flutter emulators --launch <emulator_id>
+```
+
+**Step 3: Get the ID of the running device**
+Once the emulator has booted up, list the active devices to get its exact connection ID:
+```bash
+fvm flutter devices
+```
+*For Android, the ID will typically look like `emulator-5554`. For iOS simulators, it's usually `ios`.*
+
+**Step 4: Run the test on the specific device**
+Pass the active device ID to the `-d` flag to avoid Flutter prompting for a device:
+```bash
+fvm flutter test integration_test/features/home_navigation_test.dart -d <device_id>
 ```
 
 ---
@@ -299,15 +319,15 @@ xcrun simctl list devices
 
 **Flutter Devices**
 ```sh
-flutter devices
+fvm flutter devices
 ```
 
 **List Available Emulators**
 ```sh
-flutter emulators
+fvm flutter emulators
 ```
 
 **Launch a Specific Emulator**
 ```sh
-flutter emulator --launch Medium_Phone_API_35
+fvm flutter emulator --launch Medium_Phone_API_35
 ```

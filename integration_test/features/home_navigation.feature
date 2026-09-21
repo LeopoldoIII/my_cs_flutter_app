@@ -5,5 +5,5 @@ Feature: Home Navigation
 
   Scenario: Navigate to button screen
     Given the app is running
-    When I tap {'Button Feature'} text
-    Then I see {'Button'} text
+    When I tap {'Button'} text
+    Then I see {'Screen Button'} text
