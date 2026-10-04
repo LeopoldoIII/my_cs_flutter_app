@@ -238,6 +238,67 @@ expect(find.byKey(const ValueKey('navBarText')), findsOneWidget);
 
 ---
 
+## Test Structure
+
+The project contains **two levels of automated tests**, each with a different scope and execution environment.
+
+### Level 2 — Widget Tests
+
+| Item | Detail |
+|------|--------|
+| **Purpose** | Fast, isolated component testing. No emulator needed. |
+| **Framework** | `flutter_test` |
+| **Root path** | `test/` |
+| **Entry point** | `test/widget_test.dart` |
+
+**Feature tests path:**
+```
+test/
+└── features/
+    └── button_feature/
+        └── button_widget_test.dart     # Widget tests for the Button feature
+```
+
+**Run a specific widget test:**
+```bash
+fvm flutter test test/features/button_feature/button_widget_test.dart
+```
+
+**Run all widget tests:**
+```bash
+fvm flutter test
+```
+
+---
+
+### Level 3 — Integration Tests (BDD / End-to-End)
+
+| Item | Detail |
+|------|--------|
+| **Purpose** | Full End-to-End flows on a real device or emulator. |
+| **Framework** | `integration_test` + `bdd_widget_test` |
+| **Root path** | `integration_test/` |
+| **BDD Scenarios** | `.feature` files written in Gherkin syntax |
+| **Generated code** | `*_test.dart` files auto-generated from `.feature` files |
+| **Step definitions** | `integration_test/features/step/` |
+
+**Integration tests path:**
+```
+integration_test/
+└── features/
+    ├── home_navigation.feature         # Gherkin scenarios (human-readable)
+    ├── home_navigation_test.dart       # Auto-generated Dart test (do not edit manually)
+    └── step/
+        ├── the_app_is_running.dart     # Step: "the app is running"
+        ├── i_tap_text.dart             # Step: "I tap {text}"
+        └── i_see_text.dart             # Step: "I see {text}"
+```
+
+> [!NOTE]
+> The `*_test.dart` files inside `integration_test/features/` are **auto-generated** by `build_runner` from the corresponding `.feature` files. **Do not edit them manually.** Always modify the `.feature` file and regenerate.
+
+---
+
 ## Running Tests from the Terminal
 
 We have migrated from the legacy `flutter_driver` to the modern `integration_test` and `bdd_widget_test` architecture.
